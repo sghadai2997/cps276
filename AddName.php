@@ -4,10 +4,8 @@ if(count($_POST) > 0){
 	require_once "Class.php";
 	$Addname = new Namelist();
 	$output = $Addname->getNames();
-	
 }
-
-  ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
