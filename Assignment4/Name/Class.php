@@ -31,11 +31,6 @@ function formatName($input)
 			//return empty string if button is reset
 			return "";
 		}
-	}
-	
+	}	
 }
-
-
-	
-	
-	?>	
+?>	
