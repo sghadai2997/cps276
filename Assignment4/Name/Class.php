@@ -11,7 +11,8 @@ function formatName($input)
 		if(isset($_POST['submit'])){
 			$text=$_POST['namelist'];
 			$name=$_POST['name'];
-			//explode is used to split a text(string) into an array=>submitted in the textarea
+			/*explode is used to split a text(string) into an array=>submitted in the textarea
+			get the names from text area explode on */
 			$parts=explode("\n",$text);
 			//var_dump($parts);
 
@@ -35,15 +36,6 @@ function formatName($input)
 }
 
 
-	//get the name the user entered
-	//put that name into an array and swiching first and last
-	//put that into a string like shaper, scott     $var = $arr[1]+", " + #arr[0]
-	//get the names from text area explode on \n
-	//add the user entered name to the array you just created
-	//sort the array sort()
-	//$string = implode("\n",array)    "shaper, scott\nzeb, zebra"
-	//return $string back into textarea
-
-
+	
 	
 	?>	
