@@ -1,21 +1,12 @@
 <?php
+$output="";
 if(count($_POST) > 0){
-	require_once "CLASS.PHP";
-	$Addname = new Namelist($_POST);
-	//$output = $Addname->getNames();
-   
-	}
-	$List_Names=array();
-	 if(isset($_POST['submit']))
-	{
-	  $namelist=$_POST['namelist'];
-	  $output = $Addname->getNames();
-  
-	}
-	else if(isset($_POST['reset'])) {
-	  $_POST=array();
-	}
-  
+	require_once "Class.php";
+	$Addname = new Namelist();
+	$output = $Addname->getNames();
+	
+}
+
   ?>
 
 <!DOCTYPE html>
@@ -34,27 +25,16 @@ if(count($_POST) > 0){
 	  <div class="container">
 		  <div class="row">
 			  <div class="col">
-				  <form action="" method="POST">
+				  <form method="POST">
 					  <input class="btn btn-primary" type="submit" name="submit" value="AddName">
-					  <input class="btn btn-primary" type="reset" name="reset" value="ClearName">
+					  <input class="btn btn-primary" type="submit" name="reset" value="ClearName">
 					  <div class="form-group">
 						  <label for="EnterName" class="form-label">Enter Names: </label>
-						  <input type="text" class="form-control" name="namelist" id="EnterName">
+						  <input type="text" class="form-control" name="name" id="EnterName">
 					  </div>
 					  <div class="form-group">
 						  <label for="textareaName" class="form-label">List of Names: </label>
-						  <textarea class="form-control" name="namelist" id="textareaName" rows="15"><?php
-							  
-							 /* $name = "John Mike \n Carol Tike \n Mona Lisa";
-							  
-							  for($i=0;$i < count($_POST) ;$i++)
-							  {
-								  $output=$name;
-								  echo $output."\n";
-							  }*/
-							 echo $output;
-							  
-						  ?></textarea>
+						  <textarea style="height: 500px;" class="form-control" id="namelist" name="namelist"><?php echo $output ?></textarea>
 					  </div>
 				  </form>
 			  </div>
