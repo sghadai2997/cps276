@@ -5,10 +5,7 @@ if(count($_POST) > 0){
 	$AddDir_Files = new Directories();
 	$output = $AddDir_Files->getDir();
 }
-	
-
-
-  ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
