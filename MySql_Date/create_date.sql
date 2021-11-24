@@ -4,6 +4,6 @@ USE TimeStamp;
 
 CREATE TABLE dates ( 
 	 id int(11) NOT NULL PRIMARY KEY,
-	 date_time int(11) NOT NULL, 
+	 date_time DATETIME NOT NULL, 
 	 notes char(255) NOT NULL
 	 ) ENGINE=InnoDB;
