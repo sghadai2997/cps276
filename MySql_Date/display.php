@@ -1,17 +1,7 @@
 <?php
-require_once'crud.php';
-//print_r($_POST);
 //require_once'crud.php';
-/*if(count($_POST)>0){
-	$displayList= new Crud();
-	$output=$displayList->getDateTime($_POST);
-	//echo $output;
-	print_r($_POST);
-	}
-	else{
-		$output="";
+require_once'Db_conn.php';
 
-		}*/
 
 ?>
 <!doctype html>
@@ -25,18 +15,15 @@ require_once'crud.php';
 <body>
 	<main class="container">
 		<h2>Display Notes</h2>
-
-		<?php
+		
+		
+	<?php
 		$DateTime="AddNotes.php";
 		//this link will take us back to fileupload page on web browser or index.php
 		echo "<a href=$DateTime>Add Notes </a><br>";
-		 
-		
 		?>
 	
 	</main>
-
-
 <div class="container">
 		  <div class="row">
 			  <div class="col">
@@ -56,23 +43,34 @@ require_once'crud.php';
 	  </div>
 	  <table>
 			
-			<tr style='background-color: #fefefe;'><th>Date and Time</th><th>Note</th></tr>
+	  <table border="1">
+		<thead>
+			<th>Date time</th>
+			<th>Notes</th>
+		</thead>
+		<tbody>
 
 <?php
 
 require_once'crud.php';
 if(count($_POST)>0){
+	
 		$displayList= new Crud;
 		$output=$displayList->getDateTime();
-		echo $output;
 		print_r($_POST);
 		
 	
-			}else{
-		echo "no given notes for display.";}
+			
+			}
+			else {
+				echo "no notes found.";
+			}
+		?>
+		</tbody>
+	</table>
+			
 
-?>
-	  </table>
+
   </body>
 </html>
   

@@ -7,7 +7,7 @@ class DatabaseConn {
 	  try {
   
 		$dbHost = 'localhost';
-		$dbName = 'TIMESTAMPS';
+		$dbName = 'TIME';
 		$dbUsr = 'root';
 		$dbPass = 'password';
   

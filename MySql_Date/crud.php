@@ -1,13 +1,20 @@
 <<?php
+
+use JetBrains\PhpStorm\Internal\ReturnTypeContract;
+
 require 'PdoMethods.php';
 
 class Crud {
 
     public function getDateTime(){
         $pdo = new PdoMethods();
+		$begin=date('Y-m-d',strtotime($_POST['begDate']));
+		$end=date('Y-m-d',strtotime($_POST['endDate']));
+	
         
-       // $sql = "SELECT * FROM dates WHERE(date_time as Date) BETWEEN '$begin' And '$end' ORDER BY dates ";files is a table name
-$sql= "SELECT * FROM dates";
+		//$sql="SELECT DATE_FORMAT(date_time,'%Y-%m-%d') FROM dates";
+//$sql= "SELECT * from dates";
+$sql="select * from `dates` where date_time between '$begin' and '$end'";
         $File = $pdo->selectNotBinded($sql);
 
         // IF THERE WAS AN ERROR DISPLAY MESSAGE 
@@ -16,6 +23,7 @@ $sql= "SELECT * FROM dates";
         }
         else {
             if(count($File) != 0){
+			
                 return $this->display($File);	
 			   //if($type == 'list'){return $this->createList($File);}
 				//if($type == 'input'){return $this->createInput($File);
@@ -33,21 +41,48 @@ $sql= "SELECT * FROM dates";
 
 	date_default_timezone_set('America/Detroit');
 	$list='<tr>';
-	foreach($File as $row)
+
+	/*foreach($File as $row)
 	{
-		if($row['date_time']>=$_POST['begDate'] && $row['date_Time']<=$_POST['endDate']){
-			//$list = array("date_time"=>$row['date_time'],"note"=>$row['notes']);
-			//$list .= "<li>Date: {$row['date_time']} {$row['notes']} </li>";
-			$timestamp =date("Y-m-d", strtotime('date_time'));
-		$DateTime=getdate($timestamp);
-		$list="<tr><td>Note taken on $DateTime</td><td> notes:{$row['notes']}</td></tr>";
-	}
+		//if($row['date_time']>=$_POST['begDate'] && $row['date_Time']<=$_POST['endDate']){
+			$list .= "<li>Date: {$row['date_time']} {$row['notes']} </li>";
+			$first_date=mktime(0,0,0,intval(date("m")),1);
+			$next_month_timestamp=strtotime("+1 month");
+			$firstOf_next=mktime(0,0,0,intval(date("m",$next_month_timestamp)),1,intval(date("y",$next_month_timestamp)));
+		
+			//$timestamp =date("Y-m-d", strtotime('-2 months'));
+		//$DateTime=getdate($timestamp);
+		$list="<tr><td>Note taken on $firstOf_next
+		</td><td> notes:{$row['notes']}</td></tr>";
+	*/
+	//while($row = $File->fetch_array()){
+		foreach($File as $row){
+		$list='<tr>';
+		 $list .= "<td>Date: {$row['date_time']} </td><td>{$row['notes']} </td>";	
+		
+		 $timestamp =date("Y-m-d", strtotime($row['date_time']));
+		$start_date=strtotime('2021-11-01');
+		 $end_date=strtotime('2021-11-31');
+ 
+		 if($timestamp<$start_date && $timestamp>=$end_date){
+			 die('Date doesnot fall within valid range');
+		 
+		 }
+
+		
+		echo "<tr><td>Date:   $timestamp
+		</td><td> notes:   {$row['notes']}</td></tr>";
+			
+		
+			$list='</tr>';
+	
 }
 
-$list='</tr>';
+//$list='</tr>';
 echo $list;
-}
 
+}
+	
 
 /*private function createList($File){
 	$list = '<ol>';
@@ -82,13 +117,23 @@ private function createInput($File){
 	$output .= "</tbody></table></form>";
 	return $output;
 }*/
+
+
+/*public function date(){	
+	$statement = $_POST['date'];
+$year = substr($statement, 0, -12);
+	$month = substr($statement, 5, -9);
+	$day = substr($statement, 8, -6);
+	$hour = substr($statement, 11, -3);
+	$minute = substr($statement, 14);
+	$noteTime = mktime($hour, $minute, 30, $month, $day, $year);
+	$first_date=mktime(0,0,0,intval(date("m")),1);
+	$next_month_timestamp=strtotime("+1 month");
+	$firstOf_next=mktime(0,0,0,intval(date("m",$next_month_timestamp)),1,intval(date("y",$next_month_timestamp)));
+return $noteTime;
+}*/
+
 }
-
-	
-
-	
-
-
 
 
 
